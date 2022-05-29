@@ -61,7 +61,8 @@ do
 		arg_data=$(echo "$arg_data" | sed 's@\[@\{@g;s@\]@\}@g;s/\*//g')
 		[[ -z "$answer" ]] || ans_data=$(cat "$answer" | sed -n ${loop_idx}p | sed 's@\[@\{@g;s@\]@\}@g')
 		((arg_idx++))
-		declare_arguments+="	$arg${loop_idx} = $arg_data;
+		declare_arguments+="
+	$arg${loop_idx} = $arg_data;
 "
 
 		[[ -z "$method_arguments" ]] && method_arguments+="${arg_name}${loop_idx}" || method_arguments+=", ${arg_name}${loop_idx}"
@@ -81,11 +82,11 @@ do
 	}
 	cout << \"]\\n\";
 "
-		[[ -z "$answer" ]] || compare_answer+="	if (ans${loop_idx} != ${arg_name})
+		[[ -z "$answer" ]] || compare_answer+="
+	if (ans${loop_idx} != ${arg_name})
 		cout << \"[ ] Test case ${loop_idx} : Wrong Answer\\n\";
 	else
 		cout << \"[+] Test case ${loop_idx} : Accepted\\n\";
-
 "
 	else
 		[[ -z "$answer" ]] || declare_answer+="	$ret_type ans${loop_idx} = $ans_data;
@@ -95,7 +96,11 @@ do
 	$ret_type result${loop_idx} = s.${method_name}($method_arguments);
 	cout << \"[+] Output: \" << result${loop_idx} << endl;
 "
-		[[ -z "$answer" ]] || compare_answer+=" if (ans${loop_idx} != result${loop_idx})
+		[[ -z "$answer" ]] || call_method+="
+	cout << \"[+] Answer: \" << ans${loop_idx} << endl;
+"
+		[[ -z "$answer" ]] || compare_answer+="
+	if (ans${loop_idx} != result${loop_idx})
 		cout << \"[ ] Test case ${loop_idx} : Wrong Answer\\n\";
 	else
 		cout << \"[+] Test case ${loop_idx} : Accepted\\n\";
@@ -111,8 +116,8 @@ using namespace std;
 int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(0);
-$declare_arguments
-$declare_answer
+	$declare_arguments
+	$declare_answer
 	Solution s;
 	$call_method
 	$compare_answer
