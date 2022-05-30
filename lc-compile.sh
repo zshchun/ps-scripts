@@ -70,7 +70,7 @@ do
 
 	if [ "$ret_type" == "void" ]; then
 		call_method+="
-	cout << \"\\n[+] Input: ${input_data}\\n\";
+	cout << \"\\n[+] Input: ${input_data//\"/\\\"}\\n\";
 	s.${method_name}($method_arguments);
 	string delim1 = \"[+] Output: [\";
 	for (auto &x: $arg_name) {
@@ -92,7 +92,7 @@ do
 		[[ -z "$answer" ]] || declare_answer+="	$ret_type ans${loop_idx} = $ans_data;
 "
 		call_method+="
-	cout << \"\\n[+] Input: ${input_data}\\n\";
+	cout << \"\\n[+] Input: ${input_data//\"/\\\"}\\n\";
 	$ret_type result${loop_idx} = s.${method_name}($method_arguments);
 	cout << \"[+] Output: \" << result${loop_idx} << endl;
 "
