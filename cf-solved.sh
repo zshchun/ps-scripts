@@ -29,7 +29,7 @@ cfpage=$1
 [[ $cfpage =~ ^[0-9]+$ ]] || { echo "[!] argument is not numeric"; exit 0; }
 [[ $# -gt 1 && "$2" =~ ^[0-9]+$ ]] && cflevel=$2
 
-[[ -f "$CF_LIST" ]] && mv -v "$CF_LIST" "${CF_LIST}.bck"
+[[ -f "$CF_LIST" ]] && cp -v "$CF_LIST" "${CF_LIST}.bck"
 for i in `eval echo {$cfpage..1}`
 do
 	if [[ -z "$cflevel" ]]; then
