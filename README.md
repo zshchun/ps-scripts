@@ -1,7 +1,7 @@
 # CLI Scripts for Problem Sovling 
 
 ## Requirements
-bash, curl, jq, awk, clang++
+bash, awk, xxd, [curl](https://github.com/curl/curl), [jq](https://github.com/stedolan/jq), [clang](https://github.com/llvm/llvm-project), [openssl](https://github.com/openssl/openssl), [pup](https://github.com/ericchiang/pup)
 
 ## cf-solved.sh
 Check solved problems for recent [codeforces](https://codeforces.com/) contests.
