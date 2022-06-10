@@ -44,6 +44,9 @@ $ CF_PAGER=emacs cf-get-solutions.sh
 /src/codeforces/1469/a $ cf-get-solutions.sh 
 ```
 
+## cf-editorial.sh
+Print editorial blog url of contest
+
 ## lc-compile.sh
 Compile and execute [leetcode](https://leetcode.com/) solutions on local machine.
 
